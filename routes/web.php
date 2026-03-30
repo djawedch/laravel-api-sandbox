@@ -26,13 +26,13 @@ Route::get('/setup', function() {
             $user = Auth::user();
 
             $adminToken = $user->createToken('admin-token', ['create', 'update', 'delete']);
-            $updateToken = $user->createToken('admin-token', ['create', 'update']);
-            $basicToken = $user->createToken('admin-token');
+            $updateToken = $user->createToken('update-token', ['create', 'update']);
+            $basicToken = $user->createToken('basic-token');
 
             return [
                 'admin' => $adminToken->plainTextToken,
-                'update' => $adminToken->plainTextToken,
-                'basic' => $adminToken->plainTextToken,
+                'update' => $updateToken->plainTextToken,
+                'basic' => $basicToken->plainTextToken,
             ];
         }
     }
